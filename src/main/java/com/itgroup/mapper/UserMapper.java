@@ -12,8 +12,8 @@ public interface UserMapper {
     User getUserById(Long id);
 
     @Select("select * from user where username = #{username} and password = #{password}")
-    User userLogin(User user);
+    User getUserByUsername(User user);
 
-    @Insert("insert into user (name, password, height, weight, age, gender)VALUES (#{name}, #{password}, #{height}, #{weight}, #{age}, #{gender}) ")
+    @Insert("insert into user (name, username, password, height, weight, age, gender)VALUES (#{name}, #{username}, #{password}, #{height}, #{weight}, #{age}, #{gender}) ")
     void addUser(User user);
 }

@@ -6,6 +6,7 @@ import com.itgroup.mapper.UserMapper;
 import com.itgroup.utils.JwtUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.util.Map;
 @ResponseBody
 @RequestMapping("/admin/user")
 @Api(tags = "user相关接口")
+@Slf4j
 public class UserController {
     @Autowired
     private UserMapper userMapper;
@@ -28,11 +30,18 @@ public class UserController {
     }
 
 
+    @ApiOperation("用户注册")
+    @PostMapping("/register")
+    public R<String> userRegister(@RequestBody User user){
+        log.info("User{}",user);
+        userMapper.addUser(user);
+        return R.success("user", "register success");
+    }
 
     @ApiOperation("用户登录")
     @PostMapping("/login")
     public R<String> userLogin(@RequestBody User user) {
-        User user1 = userMapper.userLogin(user);
+        User user1 = userMapper.getUserByUsername(user);
         System.out.println(user);
 
         if(user1 != null){
