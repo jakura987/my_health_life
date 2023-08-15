@@ -3,6 +3,7 @@ package com.itgroup.controller;
 import com.itgroup.common.R;
 import com.itgroup.domain.User;
 import com.itgroup.mapper.UserMapper;
+import com.itgroup.service.UserService;
 import com.itgroup.utils.JwtUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,6 +22,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private UserService userService;
 
     @ApiOperation("测试Api")
     @GetMapping("/test")
@@ -34,21 +37,17 @@ public class UserController {
     @PostMapping("/register")
     public R<String> userRegister(@RequestBody User user){
         log.info("User{}",user);
-        userMapper.addUser(user);
+        userService.userRegister(user);
         return R.success("user", "register success");
     }
 
     @ApiOperation("用户登录")
     @PostMapping("/login")
     public R<String> userLogin(@RequestBody User user) {
-        User user1 = userMapper.getUserByUsername(user);
-        System.out.println(user);
+        User user1 = userService.userLogin(user);
+        return R.success("data", "login success");
 
-        if(user1 != null){
-            return R.success("user", "login success");
-        }
 
-        return R.error("username(邮箱)或者密码错误");
 
 
 //        if (user1 != null) {
