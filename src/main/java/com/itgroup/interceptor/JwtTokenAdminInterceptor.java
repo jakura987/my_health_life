@@ -20,13 +20,13 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         try {
-            String token = request.getHeader("token");
-            Claims claims = JwtUtil.parseJWT("mytoken", token);
+            String token = request.getHeader("mytoken");
+            Claims claims = JwtUtil.parseJWT("usertoken", token);
 //            Long userId = Long.valueOf(claims.get("userId").toString());
             return true;
         }catch (Exception ex){
             log.info("JWT 错误: {}", ex.getMessage());
-            response.setStatus(400);
+            response.setStatus(401);
             return false;
         }
 

@@ -29,11 +29,11 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      * 拦截器
      * @param registry
      */
-//    @Override
-//    protected void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(jwtTokenAdminInterceptor).addPathPatterns("/admin/**")
-//                .excludePathPatterns("/admin/user/login");
-//    }
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(jwtTokenAdminInterceptor).addPathPatterns("/admin/**")
+                .excludePathPatterns("/admin/user/login","/admin/user/register");
+    }
 
     /**
      * 跨域
@@ -43,7 +43,8 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     protected void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // 允许所有路径
                 .allowedOrigins("http://localhost:3000") // 允许来自localhost:3000的请求
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS"); // 允许的HTTP方法
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")// 允许的HTTP方法
+                .allowedHeaders("*");  // 允许所有头部
     }
 
     /**

@@ -7,6 +7,7 @@ import com.itgroup.exception.BusinessException;
 import com.itgroup.mapper.UserActivityMapper;
 import com.itgroup.mapper.UserExerciseLogMapper;
 import com.itgroup.mapper.UserMapper;
+import com.itgroup.service.UserService;
 import com.itgroup.utils.CalorieUtil;
 import com.itgroup.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
@@ -29,9 +30,15 @@ class MyHealthLifeApplicationTests {
     private UserActivityMapper userActivityMapper;
     @Autowired
     private UserExerciseLogMapper logMapper;
+    @Autowired
+    private UserService userService;
 
     @Test
     void contextLoads() {
+        User user = new User();
+        user.setUsername("Tom123@gmail.com");
+        user.setPassword("123");
+        System.out.println(userService.userLogin(user));
         System.out.println(userMapper.getUserById(1L));
     }
 
@@ -42,7 +49,7 @@ class MyHealthLifeApplicationTests {
         claims.put("name", "Tom");
 
         String jwt = Jwts.builder()
-                .signWith(SignatureAlgorithm.HS256, "mytoken")
+                .signWith(SignatureAlgorithm.HS256, "usertoken")
                 .setClaims(claims)
                 .setExpiration(new Date(System.currentTimeMillis() + 3600 * 1000))
                 .compact();
@@ -54,7 +61,7 @@ class MyHealthLifeApplicationTests {
     @Test
     void testParseJwt(){
         Claims claims = Jwts.parser()
-                .setSigningKey("mytoken")
+                .setSigningKey("usertoken")
                 .parseClaimsJws("eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVG9tIiwiaWQiOjEsImV4cCI6MTY5MTY0NjIyNX0.CYRnVb9Y2cP6lv0KvAGA9oILQ6xgQ5-9O6uI2XwQuA8")
                 .getBody();
         System.out.println(claims);

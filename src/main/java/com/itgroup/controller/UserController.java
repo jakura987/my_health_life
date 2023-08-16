@@ -27,9 +27,9 @@ public class UserController {
 
     @ApiOperation("测试Api")
     @GetMapping("/test")
-    public String mytestDoc() {
+    public R<String> mytestDoc() {
         System.out.println("mytest");
-        return "TEST succesful";
+        return R.success("success", "测试成功");
     }
 
 
@@ -45,22 +45,18 @@ public class UserController {
     @PostMapping("/login")
     public R<String> userLogin(@RequestBody User user) {
         User user1 = userService.userLogin(user);
-        return R.success("data", "login success");
-
-
-
-
-//        if (user1 != null) {
-//            //登录成功后，生成jwt令牌
-//            Map<String, Object> claims = new HashMap<>();
-//            claims.put("userId", user.getId());
-//            String token = JwtUtil.createJWT(
-//                    "mytoken",
-//                    3600 * 1000,
-//                    claims);
-//            System.out.println(token);
-//            return R.success(token, "login success");
-//        }
+        if (user1 != null) {
+            //登录成功后，生成jwt令牌
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("userId", user.getId());
+            String token = JwtUtil.createJWT(
+                    "usertoken",
+                    7200 * 1000,
+                    claims);
+            System.out.println(token);
+            return R.success(token, "login success");
+        }
+        return R.error("嗯...一些未知的问题, 也许Bob可以解决");
 
 
     }
