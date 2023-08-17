@@ -24,10 +24,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User userLogin(User user) {
-        User user1 = userMapper.getUserByUsername(user);
-        if (user1 != null) {
-            if (user.getPassword().equals(user1.getPassword())) {
-                return user1;
+        User authenticatedUser = userMapper.getUserByUsername(user);
+        if (authenticatedUser != null) {
+            if (user.getPassword().equals(authenticatedUser.getPassword())) {
+                return authenticatedUser;
             }
             throw new BusinessException("密码错误");
         }

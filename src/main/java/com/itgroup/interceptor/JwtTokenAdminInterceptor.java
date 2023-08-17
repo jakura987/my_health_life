@@ -1,5 +1,6 @@
 package com.itgroup.interceptor;
 
+import com.itgroup.common.BaseContext;
 import com.itgroup.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,8 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
         try {
             String token = request.getHeader("mytoken");
             Claims claims = JwtUtil.parseJWT("usertoken", token);
-//            Long userId = Long.valueOf(claims.get("userId").toString());
+            Long userId = Long.valueOf(claims.get("userId").toString());
+            System.out.println("userId: " + userId);
             return true;
         }catch (Exception ex){
             log.info("JWT 错误: {}", ex.getMessage());
