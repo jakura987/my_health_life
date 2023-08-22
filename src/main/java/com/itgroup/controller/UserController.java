@@ -2,11 +2,13 @@ package com.itgroup.controller;
 
 import com.itgroup.common.R;
 import com.itgroup.domain.User;
+import com.itgroup.dto.UserLoginDTO;
 import com.itgroup.mapper.UserMapper;
 import com.itgroup.service.UserService;
 import com.itgroup.utils.JwtUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +45,10 @@ public class UserController {
 
     @ApiOperation("用户登录")
     @PostMapping("/login")
-    public R<String> userLogin(@RequestBody User user) {
+    public R<String> userLogin(@RequestBody UserLoginDTO userLoginDTO) {
+        User user = User.builder().username(userLoginDTO.getEmail())
+                .password(userLoginDTO.getPassword())
+                .build();
         User authenticatedUser = userService.userLogin(user);
         if (authenticatedUser != null) {
             //登录成功后，生成jwt令牌
