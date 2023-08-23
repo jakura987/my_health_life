@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation("测试Api")
+    @ApiOperation("TestApi")
     @GetMapping("/test")
     public R<String> mytestDoc() {
         System.out.println("mytest");
@@ -35,7 +35,7 @@ public class UserController {
     }
 
 
-    @ApiOperation("用户注册")
+    @ApiOperation("User Register")
     @PostMapping("/register")
     public R<String> userRegister(@RequestBody User user){
         log.info("User{}",user);
@@ -43,24 +43,38 @@ public class UserController {
         return R.success("user", "register success");
     }
 
-    @ApiOperation("用户登录")
+    @ApiOperation("User Login")
     @PostMapping("/login")
     public R<String> userLogin(@RequestBody UserLoginDTO userLoginDTO) {
-        User user = User.builder().username(userLoginDTO.getEmail())
+        User authenticatedUser = userService.userLogin(User.builder()
+                .username(userLoginDTO.getEmail())
                 .password(userLoginDTO.getPassword())
-                .build();
-        User authenticatedUser = userService.userLogin(user);
+                .build());
         if (authenticatedUser != null) {
-            //登录成功后，生成jwt令牌
+            //generate JWT token after logging successfully
             Map<String, Object> claims = new HashMap<>();
+            claims.put("userId", authenticatedUser.getId());
             String token = JwtUtil.createJWT(
                     "usertoken",
                     7200 * 1000,
                     claims);
             return R.success(token, "login success");
         }
-        return R.error("嗯...一些未知的问题, 也许Bob可以解决");
+        //TODO: update this sentence (unknown error)
+        return R.error("Um... some unknown issues, perhaps Bob can solve");
 
+    }
+
+    /**
+     * Display information on the profile page
+     * @param userId
+     * @return
+     */
+    @ApiOperation("User Profile")
+    @GetMapping("/{userId}")
+    public R<User> userDetail(@PathVariable Long userId){
+        User user = userService.findUserById(userId);
+        return R.success(user);
 
     }
 

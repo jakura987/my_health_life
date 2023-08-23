@@ -24,10 +24,10 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
             String token = request.getHeader("mytoken");
             Claims claims = JwtUtil.parseJWT("usertoken", token);
             Long userId = Long.valueOf(claims.get("userId").toString());
-            System.out.println("userId: " + userId);
+//            log.info("userId: {}", userId);
             return true;
         }catch (Exception ex){
-            log.info("JWT 错误: {}", ex.getMessage());
+            log.info("JWT error: {}", ex.getMessage());
             response.setStatus(401);
             return false;
         }

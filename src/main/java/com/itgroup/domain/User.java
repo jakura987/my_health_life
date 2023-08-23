@@ -15,7 +15,8 @@ import java.math.BigDecimal;
 @Builder
 public class User {
     private Long id;
-    private String name;
+    private String firstname;
+    private String lastname;
 
     private String username;//email
     private String password;
@@ -24,8 +25,11 @@ public class User {
     private Integer age;
     private String gender;
 
-    public User(String name, String password, BigDecimal height, BigDecimal weight, Integer age, String gender) {
-        this.name = name;
+
+    public User(String firstname, String lastname, String username, String password, BigDecimal height, BigDecimal weight, Integer age, String gender) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
         this.password = password;
         this.height = height;
         this.weight = weight;

@@ -12,15 +12,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    /**
-     * 用户注册
-     *
-     * @param user
-     */
     @Override
     public void userRegister(User user) {
         userMapper.addUser(user);
     }
+
 
     @Override
     public User userLogin(User user) {
@@ -30,8 +26,19 @@ public class UserServiceImpl implements UserService {
             if (user.getPassword().equals(authenticatedUser.getPassword())) {
                 return authenticatedUser;
             }
-            throw new BusinessException("密码错误");
+            throw new BusinessException("Incorrect password");
         }
-        throw new BusinessException("用户名错误");
+        throw new BusinessException("Incorrect username");
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        User user = userMapper.getUserById(id);
+        if (user != null) {
+            return user;
+        }
+        //TODO: Update this sentence(user does not exist)
+        throw new BusinessException("Um... some unknown issues, perhaps Bob can solve");
+
     }
 }

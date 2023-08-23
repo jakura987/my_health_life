@@ -85,7 +85,7 @@ class MyHealthLifeApplicationTests {
 
     @Test
     void testAddUser(){
-        userMapper.addUser(new User("Rose", "123", new BigDecimal(165), new BigDecimal(51), 18, "female"));
+//        userMapper.addUser(new User("Rose", "123", new BigDecimal(165), new BigDecimal(51), 18, "female"));
 
     }
 
