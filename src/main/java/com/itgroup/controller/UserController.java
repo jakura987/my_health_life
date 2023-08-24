@@ -31,7 +31,7 @@ public class UserController {
     @GetMapping("/test")
     public R<String> mytestDoc() {
         System.out.println("mytest");
-        return R.success("success", "测试成功");
+        return R.success("测试成功");
     }
 
 
@@ -40,7 +40,7 @@ public class UserController {
     public R<String> userRegister(@RequestBody User user){
         log.info("User{}",user);
         userService.userRegister(user);
-        return R.success("user", "register success");
+        return R.success("register success");
     }
 
     @ApiOperation("User Login")
@@ -54,11 +54,12 @@ public class UserController {
             //generate JWT token after logging successfully
             Map<String, Object> claims = new HashMap<>();
             claims.put("userId", authenticatedUser.getId());
+            claims.put("userFirstName", authenticatedUser.getFirstname());
             String token = JwtUtil.createJWT(
                     "usertoken",
                     7200 * 1000,
                     claims);
-            return R.success(token, "login success");
+            return R.success(token);
         }
         //TODO: update this sentence (unknown error)
         return R.error("Um... some unknown issues, perhaps Bob can solve");

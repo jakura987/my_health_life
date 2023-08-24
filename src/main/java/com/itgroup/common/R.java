@@ -33,7 +33,6 @@ public class R<T> {
         return r;
     }
 
-
     public static R error(String msg){
         R r = new R();
         r.code = 0;

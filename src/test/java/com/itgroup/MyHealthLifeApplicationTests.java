@@ -62,10 +62,11 @@ class MyHealthLifeApplicationTests {
     void testParseJwt(){
         Claims claims = Jwts.parser()
                 .setSigningKey("usertoken")
-                .parseClaimsJws("eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVG9tIiwiaWQiOjEsImV4cCI6MTY5MjI1MTc5Mn0.j85GqeNE0Jdt_28WaRW2luj-LfYgTrW_4lnjU3I4dlk")
+                .parseClaimsJws("eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiVG9tIiwiaWQiOjEsImV4cCI6MTY5Mjg4NTUyOX0.OQd4tlSZjZaNnGzuJWGFLXruRGSF7qCeCDS6z-Q8yCA")
                 .getBody();
-        System.out.println(claims);
         System.out.println(claims.get("id"));
+        System.out.println(claims.get("userFirstName"));
+
     }
 
     @Test
