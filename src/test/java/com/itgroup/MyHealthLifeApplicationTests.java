@@ -36,7 +36,7 @@ class MyHealthLifeApplicationTests {
     @Test
     void contextLoads() {
         User user = new User();
-        user.setUsername("Tom123@gmail.com");
+        user.setUserName("Tom123@gmail.com");
         user.setPassword("123");
         System.out.println(userService.userLogin(user));
         System.out.println(userMapper.getUserById(1L));
@@ -46,7 +46,7 @@ class MyHealthLifeApplicationTests {
     void testJWT(){
         HashMap<String, Object> claims = new HashMap<>();
         claims.put("id", 1);
-        claims.put("name", "Tom");
+        claims.put("Name", "Tom");
 
         String jwt = Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, "usertoken")

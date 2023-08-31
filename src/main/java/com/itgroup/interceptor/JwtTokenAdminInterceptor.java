@@ -23,7 +23,7 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
         try {
             String token = request.getHeader("mytoken");
             Claims claims = JwtUtil.parseJWT("usertoken", token);
-            System.out.println(claims);
+//            System.out.println("claims: " + claims);
             Long userId = Long.valueOf(claims.get("userId").toString());
 //            log.info("userId: {}", userId);
             return true;

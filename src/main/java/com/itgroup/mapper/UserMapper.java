@@ -11,9 +11,9 @@ public interface UserMapper {
     @Select("select * from user where id = #{id}")
     User getUserById(Long id);
 
-    @Select("select * from user where username = #{username}")
-    User getUserByUsername(User user);
+    @Select("select * from user where userName = #{userName}")
+    User getUserByUserName(User user);
 
-    @Insert("insert into user (firstname, lastname, username, password, height, weight, age, gender)VALUES (#{firstname}, #{lastname}, #{username}, #{password}, #{height}, #{weight}, #{age}, #{gender}) ")
+    @Insert("insert into user (firstName, lastName, userName, password, height, weight, age, gender)VALUES (#{firstName}, #{lastName}, #{userName}, #{password}, #{height}, #{weight}, #{age}, #{gender}) ")
     void addUser(User user);
 }

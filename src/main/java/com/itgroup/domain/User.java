@@ -15,10 +15,10 @@ import java.math.BigDecimal;
 @Builder
 public class User {
     private Long id;
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
 
-    private String username;//email
+    private String userName;//email
     private String password;
     private BigDecimal height;
     private BigDecimal weight;
@@ -26,10 +26,10 @@ public class User {
     private String gender;
 
 
-    public User(String firstname, String lastname, String username, String password, BigDecimal height, BigDecimal weight, Integer age, String gender) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
+    public User(String firstName, String lastName, String userName, String password, BigDecimal height, BigDecimal weight, Integer age, String gender) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
         this.password = password;
         this.height = height;
         this.weight = weight;

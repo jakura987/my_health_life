@@ -3,12 +3,12 @@ package com.itgroup.controller;
 import com.itgroup.common.R;
 import com.itgroup.domain.User;
 import com.itgroup.dto.UserLoginDTO;
+import com.itgroup.dto.UserRegisterDTO;
 import com.itgroup.mapper.UserMapper;
 import com.itgroup.service.UserService;
 import com.itgroup.utils.JwtUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +37,15 @@ public class UserController {
 
     @ApiOperation("User Register")
     @PostMapping("/register")
-    public R<String> userRegister(@RequestBody User user){
-        log.info("User{}",user);
+    public R<String> userRegister(@RequestBody UserRegisterDTO userRegisterDTO) {
+        User user = User.builder()
+                .userName(userRegisterDTO.getEmail())
+                .firstName(userRegisterDTO.getFirstName())
+                .lastName(userRegisterDTO.getLastName())
+                .password(userRegisterDTO.getPassword())
+                .build();
+
+        log.info("User{}", user);
         userService.userRegister(user);
         return R.success("register success");
     }
@@ -47,14 +54,14 @@ public class UserController {
     @PostMapping("/login")
     public R<String> userLogin(@RequestBody UserLoginDTO userLoginDTO) {
         User authenticatedUser = userService.userLogin(User.builder()
-                .username(userLoginDTO.getEmail())
+                .userName(userLoginDTO.getEmail())
                 .password(userLoginDTO.getPassword())
                 .build());
         if (authenticatedUser != null) {
             //generate JWT token after logging successfully
             Map<String, Object> claims = new HashMap<>();
             claims.put("userId", authenticatedUser.getId());
-            claims.put("userFirstName", authenticatedUser.getFirstname());
+            claims.put("userFirstName", authenticatedUser.getFirstName());
             String token = JwtUtil.createJWT(
                     "usertoken",
                     7200 * 1000,
@@ -68,17 +75,18 @@ public class UserController {
 
     /**
      * Display information on the profile page
+     *
      * @param userId
      * @return
      */
     @ApiOperation("User Profile")
     @GetMapping("/{userId}")
-    public R<User> userDetail(@PathVariable Long userId){
+    public R<User> userDetail(@PathVariable Long userId) {
         User user = userService.findUserById(userId);
+        log.info("user:{}", user);
         return R.success(user);
 
     }
-
 
 
 }
