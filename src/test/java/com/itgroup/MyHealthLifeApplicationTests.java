@@ -13,6 +13,7 @@ import com.itgroup.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.Builder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -103,6 +104,24 @@ class MyHealthLifeApplicationTests {
         throw new BusinessException("ddd");
     }
 
+    @Test
+    void userNameUniqueTest(){
+        User user = User.builder()
+                .userName("Rachel123@gmail.com")
+                .password("123")
+                .build();
+        userService.userRegister(user);
+    }
+
+    @Test
+    void userProfileUpdateTest(){
+        User user = User.builder()
+                .userName("R1achel123@gmail.com")
+                .password("123")
+                .id(30L)
+                .build();
+        userMapper.updateUserById(user);
+    }
 
 
 }

@@ -41,4 +41,14 @@ public class UserServiceImpl implements UserService {
         throw new BusinessException("Um... some unknown issues, perhaps Bob can solve");
 
     }
+
+    @Override
+    public void UpdateUserProfile(User user) {
+        if(user != null){
+            userMapper.updateUserById(user);
+        }else
+            throw new BusinessException("can not find user (in UpdateUserProfile)");
+    }
+
+
 }

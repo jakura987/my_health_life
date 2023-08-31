@@ -4,6 +4,7 @@ import com.itgroup.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface UserMapper {
@@ -16,4 +17,7 @@ public interface UserMapper {
 
     @Insert("insert into user (firstName, lastName, userName, password, height, weight, age, gender)VALUES (#{firstName}, #{lastName}, #{userName}, #{password}, #{height}, #{weight}, #{age}, #{gender}) ")
     void addUser(User user);
+
+    void updateUserById(User user);
+
 }
