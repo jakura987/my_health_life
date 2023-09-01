@@ -33,6 +33,10 @@ public class FoodController {
     @GetMapping("/category/{categoryId}")
     private R<List<Food>> findFoodsByCategoryId(@PathVariable Long categoryId){
         List<Food> foodListByCategory = foodService.findFoodsByCategoryId(categoryId);
+//        for (Food food :
+//                foodListByCategory) {
+//            System.out.println(food);
+//        }
         return R.success(foodListByCategory);
     }
 
