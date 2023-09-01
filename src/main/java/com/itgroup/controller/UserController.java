@@ -22,8 +22,7 @@ import java.util.Map;
 @Api(tags = "user相关接口")
 @Slf4j
 public class UserController {
-    @Autowired
-    private UserMapper userMapper;
+
     @Autowired
     private UserService userService;
 
@@ -64,6 +63,7 @@ public class UserController {
             claims.put("userFirstName", authenticatedUser.getFirstName());
             String token = JwtUtil.createJWT(
                     "usertoken",
+                    //TODO(写成配置文件的形式)
                     7200 * 1000,
                     claims);
             return R.success(token);
