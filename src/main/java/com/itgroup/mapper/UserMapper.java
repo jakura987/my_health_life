@@ -18,6 +18,6 @@ public interface UserMapper {
     @Insert("insert into user (firstName, lastName, userName, password, height, weight, age, gender)VALUES (#{firstName}, #{lastName}, #{userName}, #{password}, #{height}, #{weight}, #{age}, #{gender}) ")
     void addUser(User user);
 
-    void updateUserById(User user);
+    void updateUser(User user);
 
 }

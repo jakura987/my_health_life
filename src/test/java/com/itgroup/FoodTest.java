@@ -49,8 +49,6 @@ public class FoodTest {
         list.add(userFoodIntake2);
         foodService.addDietaryRecord(list);
 
-
-
-
     }
+
 }

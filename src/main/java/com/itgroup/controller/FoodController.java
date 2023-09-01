@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @ResponseBody
-@RequestMapping("/admin/user/food")
+@RequestMapping("/admin/food")
 @Api(tags = "food(饮食记录)相关接口")
 public class FoodController {
     @Autowired

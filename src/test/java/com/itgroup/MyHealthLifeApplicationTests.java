@@ -120,7 +120,7 @@ class MyHealthLifeApplicationTests {
                 .password("123")
                 .id(30L)
                 .build();
-        userMapper.updateUserById(user);
+        userMapper.updateUser(user);
     }
 
 

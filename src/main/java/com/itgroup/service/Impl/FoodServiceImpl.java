@@ -28,8 +28,12 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public List<Food> findFoodsByCategoryId(Long categoryId) {
-        List<Food> foodList = foodMapper.getFoodsByCategoryId(categoryId);
-        return foodList;
+        if(categoryId != null){
+            List<Food> foodList = foodMapper.getFoodsByCategoryId(categoryId);
+            return foodList;
+        }
+        throw new BusinessException("no such category");
+
     }
 
     @Override

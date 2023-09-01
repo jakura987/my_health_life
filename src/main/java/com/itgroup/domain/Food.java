@@ -22,4 +22,5 @@ public class Food {
     private BigDecimal fatPer100g;
     private BigDecimal carbsPer100g;
     private BigDecimal sugarsPer100g;
+    private String image;
 }

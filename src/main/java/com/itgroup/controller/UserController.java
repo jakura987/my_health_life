@@ -88,12 +88,12 @@ public class UserController {
 
     }
 
-    @ApiOperation("Update Profile")
-    @PostMapping("/updateProfile")
-    public R<String> updateUserProfileById(@RequestBody User user){
-        System.out.println("333");
-        userService.UpdateUserProfile(user);
-        return R.success("update successfully");
+    @ApiOperation("Update User")
+    @PutMapping("/updateUserProfile")
+    public R<String> updateUser(@RequestBody User user){
+
+        userService.updateUser(user);
+        return R.success("User updated successfully");
     }
 
 
