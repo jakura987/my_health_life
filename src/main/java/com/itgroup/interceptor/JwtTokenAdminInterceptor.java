@@ -20,6 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 public class JwtTokenAdminInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // 直接放行 OPTIONS 请求
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            return true;
+        }
         try {
             String token = request.getHeader("mytoken");
             Claims claims = JwtUtil.parseJWT("usertoken", token);
