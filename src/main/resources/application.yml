@@ -1,13 +1,14 @@
 server:
   port: ${PORT:80}
-
+#server:
+#  port: 80
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xvjj5xhldlyu1oom?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
     username: b9770bdkwra6r54x
-    password: ogwnmm5ogajyfzw8  # 替换为你的JawsDB MySQL密码
+    password: ogwnmm5ogajyfzw8
 
   main:
     banner-mode: off
@@ -17,3 +18,14 @@ mybatis:
   type-aliases-package: com.itgroup.domain
   configuration:
     map-underscore-to-camel-case: true
+
+
+#url: jdbc:mysql:///health_db?characterEncoding=UTF-8&serverTimezone=Australia/Sydney
+#web: java -jar target/my_health_life-0.0.1-SNAPSHOT.jar
+#
+#
+#username: b9770bdkwra6r54x
+#password: ogwnmm5ogajyfzw8
+#host: eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+#port: 3306
+#database_name: xvjj5xhldlyu1oom

@@ -90,6 +90,7 @@ public class UserController {
 
     @ApiOperation("Update User")
     @PutMapping("/updateUserProfile")
+    //TODO replace user with dto
     public R<String> updateUser(@RequestBody User user){
 
         userService.updateUser(user);
