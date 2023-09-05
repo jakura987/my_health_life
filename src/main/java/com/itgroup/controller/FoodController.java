@@ -55,7 +55,7 @@ public class FoodController {
         System.out.println(userFoodIntakeDTO);
 
         RecordsWithDate recordsWithDate = userFoodIntakeDTO.getRecordsWithDate();
-//        Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();
+        Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();//danger
 
 //        String dateStr = recordsWithDate.getDate();
 //        Date recordDate = CalorieUtil.convertToFormattedSqlDate(dateStr);
