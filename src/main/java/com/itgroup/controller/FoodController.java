@@ -51,30 +51,25 @@ public class FoodController {
 
     @PostMapping("/addDietaryRecord")
     private R<String> addDietaryRecord(@RequestBody UserFoodIntakeDTO userFoodIntakeDTO){
-        System.out.println("333");
-        RecordsWithDate recordsWithDate = userFoodIntakeDTO.getRecordsWithDate();
-        Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();
-
-        String dateStr = recordsWithDate.getDate();
-        Date recordDate = CalorieUtil.convertToFormattedSqlDate(dateStr);
-        System.out.println("recordDate: " + recordDate);
-        Long userId = recordsWithDate.getUserId();
-
-        List<UserFoodIntake> userFoodIntakes = new ArrayList<>();
-
-        // Process each meal
-        CalorieUtil.processMeal(records.get("breakfast"), userId, 1, userFoodIntakes, recordDate);
-        CalorieUtil.processMeal(records.get("lunch"), userId, 2, userFoodIntakes, recordDate);
-        CalorieUtil.processMeal(records.get("dinner"), userId, 3, userFoodIntakes, recordDate);
-
-//        System.out.println("userFoodIntakeData: ");
-//        for (UserFoodIntake userFoodIntake :
-//                userFoodIntakes) {
-//            System.out.println(userFoodIntake);
-//        }
-
-        // Here, after processing the meals and before returning the response.
-        foodService.addDietaryRecord(userFoodIntakes);
+        System.out.println(userFoodIntakeDTO);
+//        System.out.println("333");
+//        RecordsWithDate recordsWithDate = userFoodIntakeDTO.getRecordsWithDate();
+//        Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();
+//
+//        String dateStr = recordsWithDate.getDate();
+//        Date recordDate = CalorieUtil.convertToFormattedSqlDate(dateStr);
+//        System.out.println("recordDate: " + recordDate);
+//        Long userId = recordsWithDate.getUserId();
+//
+//        List<UserFoodIntake> userFoodIntakes = new ArrayList<>();
+//
+//        // Process each meal
+//        CalorieUtil.processMeal(records.get("breakfast"), userId, 1, userFoodIntakes, recordDate);
+//        CalorieUtil.processMeal(records.get("lunch"), userId, 2, userFoodIntakes, recordDate);
+//        CalorieUtil.processMeal(records.get("dinner"), userId, 3, userFoodIntakes, recordDate);
+//
+//
+//        foodService.addDietaryRecord(userFoodIntakes);
 
         return R.success("add successfully");
     }
