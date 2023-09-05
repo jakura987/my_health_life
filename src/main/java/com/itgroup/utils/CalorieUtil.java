@@ -71,9 +71,9 @@ public class CalorieUtil {
                 userFoodIntake.setType(type);
                 userFoodIntake.setIntakeDate(recordDate);
                 userFoodIntakes.add(userFoodIntake);
-
             }
         }
+
     }
 
 

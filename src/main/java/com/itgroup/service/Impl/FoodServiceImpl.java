@@ -9,18 +9,17 @@ import com.itgroup.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class FoodServiceImpl implements FoodService {
     @Autowired
     private FoodMapper foodMapper;
+
     @Override
     public List<Food> findAllFood() {
         List<Food> foods = foodMapper.getAllFood();
-        if(foods != null){
+        if (foods != null) {
             return foods;
         }
         //TODO:Delete this sentence and return null
@@ -29,7 +28,7 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public List<Food> findFoodsByCategoryId(Long categoryId) {
-        if(categoryId != null){
+        if (categoryId != null) {
             List<Food> foodList = foodMapper.getFoodsByCategoryId(categoryId);
             return foodList;
         }
@@ -44,16 +43,23 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public void addDietaryRecord(List<UserFoodIntake> userFoodIntakeList) {
-        for (UserFoodIntake userFoodIntake :
-                userFoodIntakeList) {
-            userFoodIntake.setIntakeDate(new Date(System.currentTimeMillis()));
-            foodMapper.addFoodIntakeRecord(userFoodIntake);
-        }
+        if (userFoodIntakeList != null && !userFoodIntakeList.isEmpty()) {
+            for (UserFoodIntake userFoodIntake :
+                    userFoodIntakeList) {
+                foodMapper.addFoodIntakeRecord(userFoodIntake);
+            }
+        } else
+            throw new BusinessException("userFoodIntakeList value is empty or null");
+
     }
 
     @Override
     public List<UserFoodIntake> findFoodIntakeRecordByUserId(Long id) {
         List<UserFoodIntake> recordList = foodMapper.getFoodIntakeRecordByUserId(id);
-        return recordList;
+        if (recordList != null) {
+            return recordList;
+        }
+        throw new BusinessException("wrong in findFoodIntakeRecordByUserId");
+
     }
 }

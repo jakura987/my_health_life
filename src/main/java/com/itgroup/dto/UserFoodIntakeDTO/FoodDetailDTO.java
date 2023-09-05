@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FoodDetailDTO {
-    private Long foodId; //foodId
+    private Long foodId;
     private String name;
     private Long categoryId;
     private Integer grams;

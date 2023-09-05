@@ -57,6 +57,7 @@ public class FoodController {
 
         String dateStr = recordsWithDate.getDate();
         Date recordDate = CalorieUtil.convertToFormattedSqlDate(dateStr);
+        System.out.println("recordDate: " + recordDate);
         Long userId = recordsWithDate.getUserId();
 
         List<UserFoodIntake> userFoodIntakes = new ArrayList<>();
@@ -65,6 +66,12 @@ public class FoodController {
         CalorieUtil.processMeal(records.get("breakfast"), userId, 1, userFoodIntakes, recordDate);
         CalorieUtil.processMeal(records.get("lunch"), userId, 2, userFoodIntakes, recordDate);
         CalorieUtil.processMeal(records.get("dinner"), userId, 3, userFoodIntakes, recordDate);
+
+//        System.out.println("userFoodIntakeData: ");
+//        for (UserFoodIntake userFoodIntake :
+//                userFoodIntakes) {
+//            System.out.println(userFoodIntake);
+//        }
 
         // Here, after processing the meals and before returning the response.
         foodService.addDietaryRecord(userFoodIntakes);

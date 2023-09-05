@@ -20,7 +20,7 @@ public interface FoodMapper {
     @Select("select * from food where category_id = #{categoryId}")
     List<Food> getFoodsByCategoryId(Long categoryId);
 
-    @Insert("insert into user_food_intake(type, user_id, food_id, grams, intake_date)VALUES (#{type}, #{userId}, #{foodId}, #{grams}, #{intakeDate})")
+    @Insert("insert into user_food_intake(type, user_id, food_id, category_id, name, grams, intake_date)VALUES (#{type}, #{userId}, #{foodId},#{categoryId},#{name}, #{grams}, #{intakeDate})")
     void addFoodIntakeRecord(UserFoodIntake userFoodIntakeRecord);
 
     @Select("select * from user_food_intake where user_id = #{id}")
