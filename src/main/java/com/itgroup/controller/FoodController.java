@@ -52,6 +52,7 @@ public class FoodController {
     @PostMapping("/addDietaryRecord")
     private R<String> addDietaryRecord(@RequestBody UserFoodIntakeDTO userFoodIntakeDTO){
         System.out.println("333");
+        System.out.println(userFoodIntakeDTO);
 
 //        RecordsWithDate recordsWithDate = userFoodIntakeDTO.getRecordsWithDate();
 //        Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();
