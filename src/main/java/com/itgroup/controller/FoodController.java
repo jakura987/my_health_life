@@ -63,7 +63,7 @@ public class FoodController {
         List<UserFoodIntake> userFoodIntakes = new ArrayList<>();
 
         // Process each meal
-        CalorieUtil.processMeal(records.get("breakfast"), userId, 1, userFoodIntakes, recordDate);
+//        CalorieUtil.processMeal(records.get("breakfast"), userId, 1, userFoodIntakes, recordDate);
 //        CalorieUtil.processMeal(records.get("lunch"), userId, 2, userFoodIntakes, recordDate);
 //        CalorieUtil.processMeal(records.get("dinner"), userId, 3, userFoodIntakes, recordDate);
 
