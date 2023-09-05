@@ -19,10 +19,10 @@ public class Food {
     private Long id;
     private String name;
     private Long categoryId;
-    private Integer caloriesPer100g;
-    private BigDecimal proteinPer100g;
-    private BigDecimal fatPer100g;
-    private BigDecimal carbsPer100g;
-    private BigDecimal sugarsPer100g;
+//    private Integer caloriesPer100g;
+//    private BigDecimal proteinPer100g;
+//    private BigDecimal fatPer100g;
+//    private BigDecimal carbsPer100g;
+//    private BigDecimal sugarsPer100g;
     private String image;
 }

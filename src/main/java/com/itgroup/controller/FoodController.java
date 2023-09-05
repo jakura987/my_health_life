@@ -51,24 +51,23 @@ public class FoodController {
 
     @PostMapping("/addDietaryRecord")
     private R<String> addDietaryRecord(@RequestBody UserFoodIntakeDTO userFoodIntakeDTO){
-        System.out.println(userFoodIntakeDTO);
-//        System.out.println("333");
-//        RecordsWithDate recordsWithDate = userFoodIntakeDTO.getRecordsWithDate();
-//        Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();
-//
-//        String dateStr = recordsWithDate.getDate();
-//        Date recordDate = CalorieUtil.convertToFormattedSqlDate(dateStr);
+
+        RecordsWithDate recordsWithDate = userFoodIntakeDTO.getRecordsWithDate();
+        Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();
+
+        String dateStr = recordsWithDate.getDate();
+        Date recordDate = CalorieUtil.convertToFormattedSqlDate(dateStr);
 //        System.out.println("recordDate: " + recordDate);
-//        Long userId = recordsWithDate.getUserId();
-//
-//        List<UserFoodIntake> userFoodIntakes = new ArrayList<>();
-//
-//        // Process each meal
-//        CalorieUtil.processMeal(records.get("breakfast"), userId, 1, userFoodIntakes, recordDate);
+        Long userId = recordsWithDate.getUserId();
+
+        List<UserFoodIntake> userFoodIntakes = new ArrayList<>();
+
+        // Process each meal
+        CalorieUtil.processMeal(records.get("breakfast"), userId, 1, userFoodIntakes, recordDate);
 //        CalorieUtil.processMeal(records.get("lunch"), userId, 2, userFoodIntakes, recordDate);
 //        CalorieUtil.processMeal(records.get("dinner"), userId, 3, userFoodIntakes, recordDate);
-//
-//
+
+
 //        foodService.addDietaryRecord(userFoodIntakes);
 
         return R.success("add successfully");
