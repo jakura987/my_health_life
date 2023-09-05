@@ -55,12 +55,11 @@ public class FoodController {
         RecordsWithDate recordsWithDate = userFoodIntakeDTO.getRecordsWithDate();
         Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();
 
-        String dateStr = recordsWithDate.getDate();
-        Date recordDate = CalorieUtil.convertToFormattedSqlDate(dateStr);
-//        System.out.println("recordDate: " + recordDate);
-        Long userId = recordsWithDate.getUserId();
+//        String dateStr = recordsWithDate.getDate();
+//        Date recordDate = CalorieUtil.convertToFormattedSqlDate(dateStr);
+//        Long userId = recordsWithDate.getUserId();
+//        List<UserFoodIntake> userFoodIntakes = new ArrayList<>();
 
-        List<UserFoodIntake> userFoodIntakes = new ArrayList<>();
 
         // Process each meal
 //        CalorieUtil.processMeal(records.get("breakfast"), userId, 1, userFoodIntakes, recordDate);
