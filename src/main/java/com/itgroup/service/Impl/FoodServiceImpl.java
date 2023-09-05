@@ -9,6 +9,7 @@ import com.itgroup.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -33,22 +34,26 @@ public class FoodServiceImpl implements FoodService {
             return foodList;
         }
         throw new BusinessException("no such category");
-
-    }
-
-    @Override
-    public void addDietaryRecord(List<UserFoodIntake> userFoodIntakeList) {
-        for (UserFoodIntake userFoodIntake :
-                userFoodIntakeList) {
-            userFoodIntake.setIntakeDate(LocalDate.now());
-            foodMapper.addFoodIntakeRecord(userFoodIntake);
-        }
-
     }
 
     @Override
     public List<FoodCategory> findAllFoodCategory() {
         List<FoodCategory> list = foodMapper.getAllFoodCategory();
         return list;
+    }
+
+    @Override
+    public void addDietaryRecord(List<UserFoodIntake> userFoodIntakeList) {
+        for (UserFoodIntake userFoodIntake :
+                userFoodIntakeList) {
+            userFoodIntake.setIntakeDate(new Date(System.currentTimeMillis()));
+            foodMapper.addFoodIntakeRecord(userFoodIntake);
+        }
+    }
+
+    @Override
+    public List<UserFoodIntake> findFoodIntakeRecordByUserId(Long id) {
+        List<UserFoodIntake> recordList = foodMapper.getFoodIntakeRecordByUserId(id);
+        return recordList;
     }
 }

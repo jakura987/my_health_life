@@ -4,12 +4,21 @@ import com.itgroup.common.R;
 import com.itgroup.domain.Food;
 import com.itgroup.domain.FoodCategory;
 import com.itgroup.domain.UserFoodIntake;
+import com.itgroup.dto.UserFoodIntakeDTO.FoodDetailDTO;
+import com.itgroup.dto.UserFoodIntakeDTO.RecordsWithDate;
+import com.itgroup.dto.UserFoodIntakeDTO.UserFoodIntakeDTO;
 import com.itgroup.service.FoodService;
+import com.itgroup.utils.CalorieUtil;
 import io.swagger.annotations.Api;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @ResponseBody
@@ -41,8 +50,29 @@ public class FoodController {
     }
 
     @PostMapping("/addDietaryRecord")
-    private R<String> addDietaryRecord(@RequestBody List<UserFoodIntake> userFoodIntakeList){
-        foodService.addDietaryRecord(userFoodIntakeList);
+    private R<String> addDietaryRecord(@RequestBody UserFoodIntakeDTO userFoodIntakeDTO){
+        RecordsWithDate recordsWithDate = userFoodIntakeDTO.getRecordsWithDate();
+        Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();
+
+        String dateStr = recordsWithDate.getDate();
+        Date recordDate = CalorieUtil.convertToFormattedSqlDate(dateStr);
+        Long userId = recordsWithDate.getUserId();
+
+        List<UserFoodIntake> userFoodIntakes = new ArrayList<>();
+
+        // Process each meal
+        CalorieUtil.processMeal(records.get("breakfast"), userId, 1, userFoodIntakes, recordDate);
+        CalorieUtil.processMeal(records.get("lunch"), userId, 2, userFoodIntakes, recordDate);
+        CalorieUtil.processMeal(records.get("dinner"), userId, 3, userFoodIntakes, recordDate);
+
+        // Here, after processing the meals and before returning the response.
+        foodService.addDietaryRecord(userFoodIntakes);
+
         return R.success("add successfully");
     }
+
+
+
+
+
 }

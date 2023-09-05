@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class FoodTest {
                 .userId(2L)
                 .foodId(1657890910927896543L)
                 .grams(200)
-                .intakeDate(LocalDate.now())
+                .intakeDate(new Date(System.currentTimeMillis()))
                 .build();
 
         UserFoodIntake userFoodIntake2 = UserFoodIntake.builder()
@@ -43,12 +44,21 @@ public class FoodTest {
                 .userId(2L)
                 .foodId(1657890910927896543L)
                 .grams(300)
-                .intakeDate(LocalDate.now())
+                .intakeDate(new Date(System.currentTimeMillis()))
                 .build();
         list.add(userFoodIntake);
         list.add(userFoodIntake2);
         foodService.addDietaryRecord(list);
 
+    }
+
+    @Test
+    void getRecordByUserId(){
+        List<UserFoodIntake> list = foodService.findFoodIntakeRecordByUserId(1L);
+        for (UserFoodIntake userfoodIntake :
+                list) {
+            System.out.println(userfoodIntake);
+        }
     }
 
 }

@@ -1,11 +1,19 @@
 package com.itgroup.utils;
 
+import com.itgroup.domain.UserFoodIntake;
+import com.itgroup.dto.UserFoodIntakeDTO.FoodDetailDTO;
+import org.springframework.beans.BeanUtils;
+
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class CalorieUtil {
 
     /**
      * 根据activity level, 计算每天所需要的卡路里
+     *
      * @param weight
      * @param height
      * @param age
@@ -51,6 +59,36 @@ public class CalorieUtil {
                 return (int) (bmr * 1.9);
             default:
                 return bmr;
+        }
+    }
+
+    public static void processMeal(List<FoodDetailDTO> foodList, Long userId, int type, List<UserFoodIntake> userFoodIntakes, Date recordDate) {
+        if (foodList != null && !foodList.isEmpty()) {
+            for (FoodDetailDTO foodDetailDto : foodList) {
+                UserFoodIntake userFoodIntake = new UserFoodIntake();
+                BeanUtils.copyProperties(foodDetailDto, userFoodIntake);
+                userFoodIntake.setUserId(userId);
+                userFoodIntake.setType(type);
+                userFoodIntake.setIntakeDate(recordDate);
+                userFoodIntakes.add(userFoodIntake);
+
+            }
+        }
+    }
+
+
+    public static Date convertToFormattedSqlDate(String inputDateStr) {
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("MM/dd/yyyy");
+            java.util.Date utilDate = inputFormat.parse(inputDateStr);
+
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedDateStr = outputFormat.format(utilDate);
+
+            return java.sql.Date.valueOf(formattedDateStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

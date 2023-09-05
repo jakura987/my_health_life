@@ -7,7 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.sql.Date;
+
 
 @Data
 @AllArgsConstructor
@@ -20,7 +21,9 @@ public class UserFoodIntake {
     private Integer type;//breakfast, lunch, dinner
     private Long userId;
     private Long foodId;
+    private Long categoryId;
+    private String name;// name of food
     private Integer grams;
     @ApiModelProperty(value = "摄入日期", hidden = true)
-    private LocalDate intakeDate;
+    private Date intakeDate;
 }
