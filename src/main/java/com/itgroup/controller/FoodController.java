@@ -42,21 +42,14 @@ public class FoodController {
     @GetMapping("/category/{categoryId}")
     private R<List<Food>> findFoodsByCategoryId(@PathVariable Long categoryId){
         List<Food> foodListByCategory = foodService.findFoodsByCategoryId(categoryId);
-//        for (Food food :
-//                foodListByCategory) {
-//            System.out.println(food);
-//        }
         return R.success(foodListByCategory);
     }
 
     @PostMapping("/addDietaryRecord")
     private R<String> addDietaryRecord(@RequestBody UserFoodIntakeDTO userFoodIntakeDTO){
-//        System.out.println("333");
-//        System.out.println(userFoodIntakeDTO);
-
         RecordsWithDate recordsWithDate = userFoodIntakeDTO.getRecordsWithDate();
-        Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();//danger
-//        System.out.println(records);
+        Map<String, List<FoodDetailDTO>> records = recordsWithDate.getRecords();
+
 
         String dateStr = recordsWithDate.getDate();
         Date recordDate = CalorieUtil.convertToFormattedSqlDate(dateStr);

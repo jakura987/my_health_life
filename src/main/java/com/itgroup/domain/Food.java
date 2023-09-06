@@ -19,6 +19,7 @@ public class Food {
     private Long id;
     private String name;
     private Long categoryId;
+    //TODO
 //    private Integer caloriesPer100g;
 //    private BigDecimal proteinPer100g;
 //    private BigDecimal fatPer100g;

@@ -12,7 +12,7 @@ import java.util.List;
 public class CalorieUtil {
 
     /**
-     * 根据activity level, 计算每天所需要的卡路里
+     * According to activity level, calculate needed calories every day
      *
      * @param weight
      * @param height
@@ -62,6 +62,14 @@ public class CalorieUtil {
         }
     }
 
+    /**
+     * handle the food intake records for specific meal types
+     * @param foodList
+     * @param userId
+     * @param type
+     * @param userFoodIntakes
+     * @param recordDate
+     */
     public static void processMeal(List<FoodDetailDTO> foodList, Long userId, int type, List<UserFoodIntake> userFoodIntakes, Date recordDate) {
         if (foodList != null && !foodList.isEmpty()) {
             for (FoodDetailDTO foodDetailDto : foodList) {
@@ -76,7 +84,11 @@ public class CalorieUtil {
 
     }
 
-
+    /**
+     * Convert a string representation of a date into a Date type.
+     * @param inputDateStr
+     * @return
+     */
     public static Date convertToFormattedSqlDate(String inputDateStr) {
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("MM/dd/yyyy");
