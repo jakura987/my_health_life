@@ -61,4 +61,9 @@ public class FoodTest {
         }
     }
 
+    @Test
+    void deleteRecordById(){
+        foodService.deleteRecordById(42L);
+    }
+
 }

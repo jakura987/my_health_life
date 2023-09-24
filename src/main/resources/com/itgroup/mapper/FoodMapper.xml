@@ -4,7 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itgroup.mapper.FoodMapper">
 
-<!--    <select id="getAllFood" resultType="Food">-->
-<!--        select * from food-->
-<!--    </select>-->
+    <update id="updateQuality">
+            UPDATE user_food_intake
+            SET grams = #{grams}
+            WHERE id = #{id}
+    </update>
 </mapper>

@@ -42,6 +42,16 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
+    public List<UserFoodIntake> findFoodIntakeRecordByUserId(Long id) {
+        List<UserFoodIntake> recordList = foodMapper.getFoodIntakeRecordByUserId(id);
+        if (recordList != null) {
+            return recordList;
+        }
+        throw new BusinessException("wrong in findFoodIntakeRecordByUserId");
+
+    }
+
+    @Override
     public void addDietaryRecord(List<UserFoodIntake> userFoodIntakeList) {
         if (userFoodIntakeList != null && !userFoodIntakeList.isEmpty()) {
             for (UserFoodIntake userFoodIntake :
@@ -54,12 +64,22 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public List<UserFoodIntake> findFoodIntakeRecordByUserId(Long id) {
-        List<UserFoodIntake> recordList = foodMapper.getFoodIntakeRecordByUserId(id);
-        if (recordList != null) {
-            return recordList;
+    public int deleteRecordById(Long id) {
+        int count = foodMapper.deleteRecordById(id);
+        if(count == 0){
+            throw new BusinessException("no such record exists");
         }
-        throw new BusinessException("wrong in findFoodIntakeRecordByUserId");
+        return count;
 
     }
+
+    @Override
+    public int updateRecordQuality(UserFoodIntake userFoodIntake) {
+        int count = foodMapper.updateQuality(userFoodIntake);
+        if(count == 0){
+            throw new BusinessException("no such record exists");
+        }
+        return count;
+    }
+
 }

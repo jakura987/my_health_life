@@ -3,9 +3,8 @@ package com.itgroup.mapper;
 import com.itgroup.domain.Food;
 import com.itgroup.domain.FoodCategory;
 import com.itgroup.domain.UserFoodIntake;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
@@ -25,4 +24,11 @@ public interface FoodMapper {
 
     @Select("select * from user_food_intake where user_id = #{id}")
     List<UserFoodIntake> getFoodIntakeRecordByUserId(Long id);
+
+    @Delete("delete from user_food_intake where id = #{id}")
+    int deleteRecordById(Long id);
+
+    int updateQuality(UserFoodIntake userFoodIntake);
+
+
 }

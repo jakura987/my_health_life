@@ -10,6 +10,7 @@ import com.itgroup.dto.UserFoodIntakeDTO.UserFoodIntakeDTO;
 import com.itgroup.service.FoodService;
 import com.itgroup.utils.CalorieUtil;
 import io.swagger.annotations.Api;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -58,9 +59,11 @@ public class FoodController {
 
 
 
+        //TODO 将type写成常量
         CalorieUtil.processMeal(records.get("breakfast"), userId, 1, userFoodIntakes, recordDate);
         CalorieUtil.processMeal(records.get("lunch"), userId, 2, userFoodIntakes, recordDate);
         CalorieUtil.processMeal(records.get("dinner"), userId, 3, userFoodIntakes, recordDate);
+        CalorieUtil.processMeal(records.get("snack"), userId, 4, userFoodIntakes, recordDate);
 
 
         foodService.addDietaryRecord(userFoodIntakes);
@@ -68,8 +71,23 @@ public class FoodController {
         return R.success("add successfully");
     }
 
+    @GetMapping("/getDietaryRecordByUserId/{userId}")
+    private R<List<UserFoodIntake>> findDietaryRecordHistoryByUserId(@PathVariable Long userId){
+        List<UserFoodIntake> recordList = foodService.findFoodIntakeRecordByUserId(userId);
+        return R.success(recordList);
+    }
 
+    @DeleteMapping("/removeDietaryRecordById/{id}")
+    private R<String> removeDietaryRecordById(@PathVariable Long id){
+        foodService.deleteRecordById(id);
+        return R.success("remove successfully");
+    }
 
+    @PutMapping("/updateRecordQuality")
+    private R<String> updateRecordQuality(@RequestBody UserFoodIntake userFoodIntake){
+        foodService.updateRecordQuality(userFoodIntake);
+        return R.success("update quality successfully");
+    }
 
 
 }

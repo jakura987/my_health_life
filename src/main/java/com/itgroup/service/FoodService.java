@@ -10,7 +10,9 @@ public interface FoodService {
     List<Food> findAllFood();
     List<Food> findFoodsByCategoryId(Long categoryId);
     List<FoodCategory> findAllFoodCategory();
-    void addDietaryRecord(List<UserFoodIntake> userFoodIntakeList);
     List<UserFoodIntake> findFoodIntakeRecordByUserId(Long id);
+    void addDietaryRecord(List<UserFoodIntake> userFoodIntakeList);
+    int deleteRecordById(Long id);
+    int updateRecordQuality(UserFoodIntake userFoodIntake);
 
 }
