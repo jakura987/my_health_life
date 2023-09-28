@@ -8,5 +8,11 @@ import java.util.List;
 public interface ProductService {
     Product getProductById(Long id);
 
+    Integer getProductCountByCategoryId(Long categoryId);
+
     List<ProductCategory> findProductCategoryList();
+
+    List<String> findAllCategoryNames();
+
+
 }

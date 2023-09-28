@@ -20,8 +20,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Integer getProductCountByCategoryId(Long categoryId) {
+        Integer productCount = productMapper.getProductCountByCategoryId(categoryId);
+        return productCount;
+    }
+
+    @Override
     public List<ProductCategory> findProductCategoryList() {
         List<ProductCategory> categoryList = productMapper.getProductCategoryList();
         return categoryList;
+    }
+
+    @Override
+    public List<String> findAllCategoryNames() {
+        List<String> nameList = productMapper.getProductCategoryName();
+        return nameList;
     }
 }

@@ -5,10 +5,8 @@ import com.itgroup.domain.ProductCategory;
 import com.itgroup.service.ProductService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -25,4 +23,17 @@ public class ProductController {
         List<ProductCategory> categoryList = productService.findProductCategoryList();
         return R.success(categoryList);
     }
+
+    @GetMapping("/categoryNames")
+    private R<List<String>> findAllCategoryNames(){
+        List<String> nameList = productService.findAllCategoryNames();
+        return R.success(nameList);
+    }
+
+    @GetMapping("/count/{id}")
+    private R<Integer> getProductCountByCategoryId(@PathVariable Long id){
+        Integer count = productService.getProductCountByCategoryId(id);
+        return R.success(count);
+    }
+
 }
