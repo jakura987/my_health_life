@@ -8,7 +8,9 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @ResponseBody
@@ -40,7 +42,22 @@ public class ProductController {
     @GetMapping("/category/{id}")
     private R<List<Product>> findProductListByCategoryId(@PathVariable Long id){
         List<Product> productListByCategoryId = productService.findProductListByCategoryId(id);
+        //TODO 删除system
+        System.out.println(productListByCategoryId);
         return R.success(productListByCategoryId);
     }
+
+    @GetMapping("/categoryAndCount")
+    private R<Map<String, Integer>> showCategoryAndCount(){
+        Map<String, Integer> categoryMap = new HashMap<>();
+        List<ProductCategory> categoryList = productService.findProductCategoryList();
+        for (ProductCategory productCategory :
+                categoryList) {
+            Integer count = productService.getProductCountByCategoryId(productCategory.getId());
+            categoryMap.put(productCategory.getName(), count);
+        }
+        return R.success(categoryMap);
+    }
+
 
 }
