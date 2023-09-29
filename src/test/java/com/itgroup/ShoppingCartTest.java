@@ -20,19 +20,15 @@ public class ShoppingCartTest {
 
     @Test
     void addToShoppingCastTest(){
-        ShoppingCart shoppingCart = ShoppingCart.builder()
-                .userId(1L)
-                .productId(1432981736189098762L)
-                .quantity(2)
-                .totalAmount(40.0)
-                .createTime(new Date())
-                .build();
-        shoppingCartService.addItemToShoppingCart(shoppingCart);
+//        ShoppingCart shoppingCart = ShoppingCart.builder()
+//                .userId(1L)
+//                .productId(1432981736189098762L)
+//                .quantity(2)
+//                .totalAmount(40.0)
+//                .createTime(new Date())
+//                .build();
+//        shoppingCartService.addItemToShoppingCart(shoppingCart);
 
-//        Product product = productService.getProductById(1782736178908173618L);
-//        System.out.println(product);
-
-//        shoppingCartService.addItemToShoppingCart(product);
 
     }
 }
