@@ -52,6 +52,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 shoppingCartMapper.add(shoppingCart);
             }
         } catch (Exception e) {
+
             throw new BusinessException("Dr.Bob find there is an Error in addItemToShoppingCart " + e.getMessage());
         }
     }
