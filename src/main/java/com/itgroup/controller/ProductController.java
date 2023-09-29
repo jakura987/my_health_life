@@ -1,6 +1,7 @@
 package com.itgroup.controller;
 
 import com.itgroup.common.R;
+import com.itgroup.domain.Product;
 import com.itgroup.domain.ProductCategory;
 import com.itgroup.service.ProductService;
 import io.swagger.annotations.Api;
@@ -34,6 +35,12 @@ public class ProductController {
     private R<Integer> getProductCountByCategoryId(@PathVariable Long id){
         Integer count = productService.getProductCountByCategoryId(id);
         return R.success(count);
+    }
+
+    @GetMapping("/category/{id}")
+    private R<List<Product>> findProductListByCategoryId(@PathVariable Long id){
+        List<Product> productListByCategoryId = productService.findProductListByCategoryId(id);
+        return R.success(productListByCategoryId);
     }
 
 }

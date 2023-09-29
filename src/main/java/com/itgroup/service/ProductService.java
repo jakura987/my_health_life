@@ -14,5 +14,7 @@ public interface ProductService {
 
     List<String> findAllCategoryNames();
 
+    List<Product> findProductListByCategoryId(Long categoryId);
+
 
 }

@@ -36,4 +36,10 @@ public class ProductServiceImpl implements ProductService {
         List<String> nameList = productMapper.getProductCategoryName();
         return nameList;
     }
+
+    @Override
+    public List<Product> findProductListByCategoryId(Long categoryId) {
+        List<Product> productList = productMapper.getProductListByCategoryId(categoryId);
+        return productList;
+    }
 }

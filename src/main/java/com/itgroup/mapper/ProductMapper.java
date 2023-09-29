@@ -22,4 +22,7 @@ public interface ProductMapper {
     @Select("select count(*) from product where product_categoryId = #{categoryId}")
     Integer getProductCountByCategoryId(Long categoryId);
 
+    @Select("select * from product where product_categoryId = #{categoryId}")
+    List<Product> getProductListByCategoryId(Long categoryId);
+
 }
