@@ -43,11 +43,12 @@ public class ShoppingCartController {
                 shoppingCartList) {
             ShoppingCartVo shoppingCartVo = new ShoppingCartVo();
             BeanUtils.copyProperties(shoppingcart, shoppingCartVo);
-            Long productId = shoppingcart.getProductId();
-            //TODO: 太繁琐
-            Product product = productService.getProductById(productId);
+
+            Product product = productService.getProductById(shoppingcart.getProductId());
             String productName = product.getName();
+            Double unitPrice = product.getPrice();
             shoppingCartVo.setProductName(productName);
+            shoppingCartVo.setUnitPrice(unitPrice);
             shoppingCartVoList.add(shoppingCartVo);
         }
         return R.success(shoppingCartVoList);
