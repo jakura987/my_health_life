@@ -1,6 +1,7 @@
 package com.itgroup.controller;
 
 import com.itgroup.common.R;
+import com.itgroup.domain.Product;
 import com.itgroup.domain.ShoppingCart;
 import com.itgroup.service.ProductService;
 import com.itgroup.service.ShoppingCartService;
@@ -42,7 +43,10 @@ public class ShoppingCartController {
                 shoppingCartList) {
             ShoppingCartVo shoppingCartVo = new ShoppingCartVo();
             BeanUtils.copyProperties(shoppingcart, shoppingCartVo);
-            String productName = productService.getProductById(shoppingcart.getProductId()).getName();
+            Long productId = shoppingcart.getProductId();
+            //TODO: 太繁琐
+            Product product = productService.getProductById(productId);
+            String productName = product.getName();
             shoppingCartVo.setProductName(productName);
             shoppingCartVoList.add(shoppingCartVo);
         }
