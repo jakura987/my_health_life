@@ -1,12 +1,17 @@
 package com.itgroup.controller;
 
 import com.itgroup.common.R;
+import com.itgroup.domain.Product;
 import com.itgroup.domain.ShoppingCart;
+import com.itgroup.service.ProductService;
 import com.itgroup.service.ShoppingCartService;
+import com.itgroup.vo.ShoppingCartVo;
 import io.swagger.annotations.Api;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //TODO 其他部分移除ResponseBody
@@ -16,6 +21,8 @@ import java.util.List;
 public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
+    @Autowired
+    private ProductService productService;
 
     /**
      * add item to user's shopping cart
@@ -29,8 +36,19 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/getCart/{userId}")
-    public List<ShoppingCart> getShoppingCart(@PathVariable Long userId){
-        return shoppingCartService.getShoppingCartByUserId(userId);
+    public R<List<ShoppingCartVo>> getShoppingCart(@PathVariable Long userId){
+        List<ShoppingCart> shoppingCartList = shoppingCartService.getShoppingCartByUserId(userId);
+        ArrayList<ShoppingCartVo> shoppingCartVoList = new ArrayList<>();
+        for (ShoppingCart shoppingcart :
+                shoppingCartList) {
+            ShoppingCartVo shoppingCartVo = new ShoppingCartVo();
+            BeanUtils.copyProperties(shoppingcart, shoppingCartVo);
+            String productName = productService.getProductById(shoppingcart.getProductId()).getName();
+            shoppingCartVo.setProductName(productName);
+            shoppingCartVoList.add(shoppingCartVo);
+        }
+        return R.success(shoppingCartVoList);
+
     }
 
     @DeleteMapping("/removeItem/{id}")
