@@ -1,7 +1,6 @@
 package com.itgroup.controller;
 
 import com.itgroup.common.R;
-import com.itgroup.domain.Product;
 import com.itgroup.domain.ShoppingCart;
 import com.itgroup.service.ProductService;
 import com.itgroup.service.ShoppingCartService;
