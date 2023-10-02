@@ -1,6 +1,8 @@
 package com.itgroup.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +19,7 @@ public class ShoppingCart {
     @ApiModelProperty(value = "shoppingCartId", hidden = true)
     private Long id;
     private Long userId;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long productId;
     private Integer quantity;
     private Double totalAmount;

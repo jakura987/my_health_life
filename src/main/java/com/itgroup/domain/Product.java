@@ -16,6 +16,7 @@ public class Product {
     private Long id;
     private String name;
     private Long productSeriesId;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long productCategoryId;
     private Double price;
     private String image;
