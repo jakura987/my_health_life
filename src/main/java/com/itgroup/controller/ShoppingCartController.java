@@ -45,10 +45,9 @@ public class ShoppingCartController {
             BeanUtils.copyProperties(shoppingcart, shoppingCartVo);
 
             Product product = productService.getProductById(shoppingcart.getProductId());
-            String productName = product.getName();
-            Double unitPrice = product.getPrice();
-            shoppingCartVo.setProductName(productName);
-            shoppingCartVo.setUnitPrice(unitPrice);
+            shoppingCartVo.setProductName(product.getName());
+            shoppingCartVo.setUnitPrice(product.getPrice());
+            shoppingCartVo.setProductImage(product.getImage());
             shoppingCartVoList.add(shoppingCartVo);
         }
         return R.success(shoppingCartVoList);

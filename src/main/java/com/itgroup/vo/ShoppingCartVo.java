@@ -14,4 +14,5 @@ public class ShoppingCartVo extends ShoppingCart {
     @ApiModelProperty(value = "Unit Price")
     private Double unitPrice;
     private String productName;
+    private String productImage;
 }
