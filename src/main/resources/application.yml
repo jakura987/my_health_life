@@ -6,9 +6,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xvjj5xhldlyu1oom?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
-    username: b9770bdkwra6r54x
-    password: ogwnmm5ogajyfzw8
+    url: jdbc:mysql:///health_db?characterEncoding=UTF-8&serverTimezone=Australia/Sydney
+    username: root
+    password: langji20967096
 
   main:
     banner-mode: off
@@ -19,6 +19,13 @@ mybatis:
 #  type-handlers-package: org.apache.ibatis.type
   configuration:
     map-underscore-to-camel-case: true
+
+jwt:
+  token:
+    # Set the key used for JWT signature encryption
+    name: usertoken
+    # Set the JWT expiration time
+    expiry: 7200000
 
 
 

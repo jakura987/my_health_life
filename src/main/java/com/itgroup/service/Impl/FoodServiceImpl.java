@@ -18,12 +18,7 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public List<Food> findAllFood() {
-        List<Food> foods = foodMapper.getAllFood();
-        if (foods != null) {
-            return foods;
-        }
-        //TODO:Delete this sentence and return null
-        throw new BusinessException("Um... some unknown issues, perhaps Bob can solve");
+        return foodMapper.getAllFood();
     }
 
     @Override
@@ -47,7 +42,7 @@ public class FoodServiceImpl implements FoodService {
         if (recordList != null) {
             return recordList;
         }
-        throw new BusinessException("wrong in findFoodIntakeRecordByUserId");
+        throw new BusinessException("error in findFoodIntakeRecordByUserId");
 
     }
 

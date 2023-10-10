@@ -17,11 +17,11 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ApiModel(description = "用户食物摄入记录")
+@ApiModel(description = "user food intake record")
 public class UserFoodIntake {
     @ApiModelProperty(value = "id")
     private Long id;
-    private Integer type;//breakfast, lunch, dinner
+    private Integer type;//breakfast, lunch, dinner, snack
     private Long userId;
     @JsonSerialize(using = ToStringSerializer.class)
     private Long foodId;
@@ -29,7 +29,7 @@ public class UserFoodIntake {
     private Long categoryId;
     private String name;// name of food
     private Integer grams;
-    @ApiModelProperty(value = "摄入日期", hidden = true)
+    @ApiModelProperty(value = "intake date", hidden = true)
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date intakeDate;
 }

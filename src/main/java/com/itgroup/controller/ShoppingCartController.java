@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO 其他部分移除ResponseBody
 @RestController
 @RequestMapping("/admin/user/shoppingCart")
-@Api(tags = "shoppingCart(商城购物车)相关接口")
+@Api(tags = "shoppingCart(online mart cart) related interface")
 public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
@@ -25,9 +24,10 @@ public class ShoppingCartController {
     private ProductService productService;
 
     /**
-     * add item to user's shopping cart
-     * @param shoppingCart
-     * @return
+     * Handles the POST request to add an item to the shopping cart.
+     *
+     * @param shoppingCart The item to be added, received as a JSON in the request body.
+     * @return R object encapsulating the success response message.
      */
     @PostMapping("/add")
     public R<String> addItemToShoppingCart(@RequestBody ShoppingCart shoppingCart){
@@ -35,6 +35,12 @@ public class ShoppingCartController {
         return R.success("add successfully");
     }
 
+    /**
+     * Handles the GET request to retrieve the shopping cart items for a specific user.
+     *
+     * @param userId The ID of the user whose shopping cart items are to be retrieved.
+     * @return R object encapsulating the success response and a list of shopping cart items for the user.
+     */
     @GetMapping("/getCart/{userId}")
     public R<List<ShoppingCartVo>> getShoppingCart(@PathVariable Long userId){
         List<ShoppingCart> shoppingCartList = shoppingCartService.getShoppingCartByUserId(userId);
@@ -54,12 +60,24 @@ public class ShoppingCartController {
 
     }
 
+    /**
+     * Handles the DELETE request to remove an item from the shopping cart by its ID.
+     *
+     * @param id The ID of the shopping cart item to be removed.
+     * @return R object encapsulating the success response message.
+     */
     @DeleteMapping("/removeItem/{id}")
     public R<String> removeItemInShoppingCartById(@PathVariable Long id){
         shoppingCartService.removeItemInShoppingCartById(id);
         return R.success("remove successfully");
     }
 
+    /**
+     * Handles the PUT request to update the quantity of an item in the shopping cart.
+     *
+     * @param shoppingCart The updated item, received as a JSON in the request body.
+     * @return R object encapsulating the success response message.
+     */
     @PutMapping("/updateQuality")
     public R<String> updateItemQuality(@RequestBody ShoppingCart shoppingCart){
         shoppingCartService.ChangeItemQuality(shoppingCart);

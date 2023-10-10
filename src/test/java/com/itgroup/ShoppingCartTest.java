@@ -15,19 +15,19 @@ import java.util.Date;
 public class ShoppingCartTest {
     @Autowired
     private ShoppingCartService shoppingCartService;
-//    @Autowired
-//    private ProductService productService;
+    @Autowired
+    private ProductService productService;
 
     @Test
     void addToShoppingCastTest(){
-//        ShoppingCart shoppingCart = ShoppingCart.builder()
-//                .userId(1L)
-//                .productId(1432981736189098762L)
-//                .quantity(2)
-//                .totalAmount(40.0)
-//                .createTime(new Date())
-//                .build();
-//        shoppingCartService.addItemToShoppingCart(shoppingCart);
+        ShoppingCart shoppingCart = ShoppingCart.builder()
+                .userId(1L)
+                .productId(1432981736189098762L)
+                .quantity(2)
+                .totalAmount(40.0)
+                .createTime(new Date())
+                .build();
+        shoppingCartService.addItemToShoppingCart(shoppingCart);
 
 
     }

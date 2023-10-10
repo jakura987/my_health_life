@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
             return user;
         }
         //TODO: Update this sentence(user does not exist)
-        throw new BusinessException("Um... some unknown issues, perhaps Bob can solve");
+        throw new BusinessException("no user exists");
 
     }
 

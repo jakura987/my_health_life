@@ -17,7 +17,6 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
-
     private String userName;//email
     private String password;
     private BigDecimal height;
@@ -25,15 +24,4 @@ public class User {
     private Integer age;
     private String gender;
 
-
-    public User(String firstName, String lastName, String userName, String password, BigDecimal height, BigDecimal weight, Integer age, String gender) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.password = password;
-        this.height = height;
-        this.weight = weight;
-        this.age = age;
-        this.gender = gender;
-    }
 }

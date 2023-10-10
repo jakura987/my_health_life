@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
@@ -19,11 +18,5 @@ public class Food {
     private Long id;
     private String name;
     private Long categoryId;
-    //TODO
-//    private Integer caloriesPer100g;
-//    private BigDecimal proteinPer100g;
-//    private BigDecimal fatPer100g;
-//    private BigDecimal carbsPer100g;
-//    private BigDecimal sugarsPer100g;
     private String image;
 }

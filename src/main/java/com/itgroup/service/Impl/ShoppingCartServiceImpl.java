@@ -65,7 +65,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 shoppingCartMapper.delete(id);
             }
         }catch (Exception e){
-            throw new BusinessException("Dr.Bob finds there is an Error in removeItemInShoppingCartById");
+            throw new BusinessException("no such Item in shoppingCart");
         }
 
     }
@@ -77,7 +77,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             shoppingCart.setUpdateTime(new Date());
             shoppingCartMapper.update(shoppingCart);
         }catch (Exception e){
-            throw new BusinessException("Dr.Bob finds there is an Error in ChangeItemQuality");
+            throw new BusinessException("Error occurs in ChangeItemQuality");
         }
 
     }
