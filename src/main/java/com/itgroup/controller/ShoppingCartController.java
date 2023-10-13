@@ -73,6 +73,19 @@ public class ShoppingCartController {
     }
 
     /**
+     * Endpoint to remove all items from a user's shopping cart.
+     *
+     * @param userId The ID of the user whose shopping cart items are to be removed.
+     * @return A response indicating the success of the operation.
+     */
+    @DeleteMapping("/removeAllItems/{userId}")
+    public R<String> removeAllItemsInShoppingCartByUserId(@PathVariable Long userId){
+        shoppingCartService.removeAllItemsInShoppingCartByUserId(userId);
+        return R.success("delete successfully");
+    }
+
+
+    /**
      * Handles the PUT request to update the quantity of an item in the shopping cart.
      *
      * @param shoppingCart The updated item, received as a JSON in the request body.

@@ -15,7 +15,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Autowired
     private ShoppingCartMapper shoppingCartMapper;
 
-
     @Override
     public List<ShoppingCart> getShoppingCartByUserId(Long id) {
         return shoppingCartMapper.getShoppingCartByUserId(id);
@@ -68,6 +67,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             throw new BusinessException("no such Item in shoppingCart");
         }
 
+    }
+
+    @Override
+    public void removeAllItemsInShoppingCartByUserId(Long userId) {
+        try{
+            if(userId != null){
+                shoppingCartMapper.deleteAll(userId);
+            }
+        }catch (Exception e){
+            throw new BusinessException("error occurs in shoppingCart " + e.getMessage());
+        }
     }
 
     //TODO: exception
