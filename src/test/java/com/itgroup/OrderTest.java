@@ -18,7 +18,6 @@ public class OrderTest {
     void createOrderTest(){
         Order order = Order.builder()
                 .userId(1L)
-                .userName("Duddy")
                 .totalPrice(50.0)
                 .orderTime(new Date())
                 .build();

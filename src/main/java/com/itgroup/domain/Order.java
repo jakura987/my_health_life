@@ -15,8 +15,9 @@ import java.util.Date;
 public class Order {
     private Long id;
     private Long userId;
-    private String userName;
+    @ApiModelProperty(hidden = true)
     private String address;
+    @ApiModelProperty(hidden = true)
     private String phone;
     @ApiModelProperty(hidden = true)
     private Date orderTime;
