@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@ResponseBody
 @RequestMapping("/admin/user")
 @Api(tags = "user related interface")
 @Slf4j
